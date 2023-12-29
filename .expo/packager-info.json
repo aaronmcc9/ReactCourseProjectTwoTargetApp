@@ -3,5 +3,7 @@
   "packagerPort": 19000,
   "expoServerNgrokUrl": "https://pr-8ae.anonymous.course-project-two.exp.direct",
   "packagerNgrokUrl": "https://pr-8ae.anonymous.course-project-two.exp.direct",
-  "ngrokPid": 44744
+  "ngrokPid": 29704,
+  "packagerPid": null,
+  "webpackServerPort": null
 }
