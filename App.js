@@ -7,6 +7,7 @@ import Colors from './constants/Colors';
 import GameOverScreen from './screens/GameOverScreen';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
   const [userNumber, setUserNumber] = useState();
@@ -18,9 +19,9 @@ export default function App() {
     'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
   });
 
-  if(!fontsLoaded){
+  if (!fontsLoaded) {
     //component will re execute until condition met
-    return <AppLoading/>
+    return <AppLoading />
   }
 
   function pickedNumberHandler(pickedNumber) {
@@ -33,7 +34,7 @@ export default function App() {
     setGuessRounds(numberOfRounds)
   }
 
-  function startNewGameHandler(){
+  function startNewGameHandler() {
     setUserNumber(null);
     setGuessRounds(0);
   }
@@ -44,20 +45,23 @@ export default function App() {
     screen = <GameScreen userNumber={userNumber} onGameOver={gameOverHandler} />
 
   if (gameIsOver && userNumber)
-    screen = <GameOverScreen userNumber={userNumber} roundsNumber={guessRounds} onStartNewGame={startNewGameHandler}/>
+    screen = <GameOverScreen userNumber={userNumber} roundsNumber={guessRounds} onStartNewGame={startNewGameHandler} />
 
   return (
-    <LinearGradient colors={[Colors.primary700, Colors.accent500]}
-      style={styles.rootScreen}>
-      <ImageBackground resizeMode='cover'
-        style={styles.rootScreen}
-        source={require("./assets/images/background.png")}
-        imageStyle={styles.backgroundImage}>
-        <SafeAreaView style={styles.rootScreen}>
-          {screen}
-        </SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+    <>
+      <StatusBar style='dark'/>
+      <LinearGradient colors={[Colors.primary700, Colors.accent500]}
+        style={styles.rootScreen}>
+        <ImageBackground resizeMode='cover'
+          style={styles.rootScreen}
+          source={require("./assets/images/background.png")}
+          imageStyle={styles.backgroundImage}>
+          <SafeAreaView style={styles.rootScreen}>
+            {screen}
+          </SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
+    </>
   );
 }
 
